@@ -43,13 +43,13 @@ header {
 }
 h1 {
   margin: 0;
-  padding: var(--size-4) var(--size-8);
+  padding: var(--size-4);
   background: rgba(0,0,0,0.6);
   font-size: var(--font-size-3);
   font-family: 'Comfortaa', display;
 }
 main {
-  padding: var(--size-4) var(--size-2) var(--size-2) var(--size-2);
+  padding: var(--size-4);
 }
 article {
   padding: 0 0 var(--size-6) 0;
@@ -135,6 +135,9 @@ ul li {
   grid-template-columns: var(--icon-width) calc(50% - var(--icon-width-half) - var(--cell-gap)) calc(50% - var(--icon-width-half) - var(--cell-gap));
 }
 @media screen and (min-width: 800px) {
+  h1 {
+    padding: var(--size-4) var(--size-8);
+  }
   main {
     padding: var(--size-8) var(--size-8) var(--size-8) var(--size-8);
   }

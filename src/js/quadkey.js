@@ -235,7 +235,7 @@ const getQuadkeys = () => {
     const infoBar = document.querySelector("#info-bar");
     infoBar.style.top = `0px`;
     infoBar.style.filter = "drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5))";
-    infoBar.style.zIndex = "999";
+    infoBar.style.zIndex = "9999";
     setTimeout(() => {
       // トースト的な、を閉じる
       const infoBarHeight = infoBar.offsetHeight;
