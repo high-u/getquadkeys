@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/open-props"/>
+<link rel="stylesheet" href="https://unpkg.com/open-props/gradients.min.css"/>
+
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:300|comfortaa:700|roboto-mono:300" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+crossorigin=""></script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+}
+html {
+  --text-1: var(--gray-9);
+  --text-2: var(--gray-7);
+}
+@media (prefers-color-scheme:dark) {
+  html {
+    --text-1: var(--gray-1);
+    --text-2: var(--gray-2);
+    background-color: var(--gray-9);
+    color: var(--text-1);
+  }
+}
+
+header {
+  background: var(--gradient-29);
+}
+h1 {
+  margin: 0;
+  padding: var(--size-4) var(--size-8);
+  background: rgba(0,0,0,0.6);
+  font-size: var(--font-size-3);
+  font-family: 'Comfortaa', display;
+}
+main {
+  padding: var(--size-4) var(--size-2) var(--size-2) var(--size-2);
+}
+article {
+  padding: 0 0 var(--size-6) 0;
+}
+button {
+  color: var(--text-1);
+  background: var(--gradient-29);
+  border: none;
+  cursor: pointer;
+  padding: var(--size-2);
+  width: 100%;
+  margin: 0;
+  font-size: var(--font-size-2);
+  border-radius: var(--radius-2);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+button:hover {
+  filter: brightness(110%);
+}
+
+label {
+  display: block;
+  color: var(--gray-5);
+  padding: 0 0 var(--size-1) 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--font-size-1);
+}
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: var(--size-2);
+  font-size: var(--font-size-2);
+  border-width: var(--border-size-2);
+  border-color: var(--gray-7);
+  border-radius: var(--radius-2);
+  border-style: solid;
+  background-color: var(--gray-8);
+  color: var(--gray-1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: 1px;
+}
+input[type="text"]:focus {
+  outline: var(--indigo-3) solid var(--border-size-2);
+}
+
+ul {
+  padding: var(--size-2) 0 0 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  /* border: var(--border-size-1) solid var(--gray-7); */
+  background-color: var(--gray-8);
+  border-radius: var(--radius-2);
+}
+ul li {
+  flex: 1;
+  display: block;
+  padding: var(--size-1) var(--size-2);
+  /* border: var(--border-size-1) solid var(--gray-7); */
+  border-radius: var(--radius-2);
+  font-family: 'Roboto Mono', monospace;
+  list-style: none;
+  font-size: var(--font-size-1);
+  color: var(--gray-6);
+  text-align: center;
+  margin: 0 var(--size-2) var(--size-2) var(--size-2);
+  background-color: var(--gray-9);
+}
+
+#map {
+  border-radius: var(--radius-2);
+  height: var(--size-14);
+}
+
+.grid {
+  display: grid;
+  --cell-gap: var(--size-4);
+  gap: var(--cell-gap);
+  --icon-width: 48px;
+  --icon-width-half: calc(var(--icon-width) / 2);
+  grid-template-columns: var(--icon-width) calc(50% - var(--icon-width-half) - var(--cell-gap)) calc(50% - var(--icon-width-half) - var(--cell-gap));
+}
+@media screen and (min-width: 800px) {
+  main {
+    padding: var(--size-8) var(--size-8) var(--size-8) var(--size-8);
+  }
+  .grid {
+    display: grid;
+    --cell-gap: var(--size-4);
+    gap: var(--cell-gap);
+    --gap-1-4: calc(var(--cell-gap) / 4);
+    --icon-width: 48px;
+    --icon-width-half: calc(var(--icon-width) / 2);
+    grid-template-columns: var(--icon-width) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) var(--icon-width) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4));
+  }
+}
+.cell-pin {
+  display: flex;
+  align-items: flex-end;
+}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Get quadkey containing a range of squares</h1>
+  </header>
+  <main>
+    <article>
+      <div id="map"></div>
+    </article>
+    <article>
+      <div class="grid">
+        <div class="cell-pin">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" viewBox="12 2 40 60" aria-labelledby="title" aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path data-name="layer1" d="M32 2a20 20 0 0 0-20 20c0 18 20 40 20 40s20-22 20-40A20 20 0 0 0 32 2zm7.4 32.1L32 28.7l-7.4 5.4 2.9-8.7L20 20h9.2l2.8-8.7 2.8 8.7H44l-7.4 5.4z" fill="#0284c7"></path>
+          </svg> -->
+          <img src="../images/pin.svg" width="48" height="48" />
+        </div>
+        <div>
+          <label for="lat1">Latitude</label><input type="text" id="lat1" value="35.690921" />
+        </div>
+        <div>
+          <label for="lon1">Longitude</label><input type="text" id="lon1" value="139.700257" />
+        </div>
+        <div class="cell-pin">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" viewBox="12 2 40 60" aria-labelledby="title" aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path data-name="layer1" d="M32 2a20 20 0 0 0-20 20c0 18 20 40 20 40s20-22 20-40A20 20 0 0 0 32 2zm7.4 32.1L32 28.7l-7.4 5.4 2.9-8.7L20 20h9.2l2.8-8.7 2.8 8.7H44l-7.4 5.4z" fill="#0d9488"></path>
+          </svg> -->
+          <img src="../images/pin2.svg" width="48" height="48" />
+        </div>
+        <div>
+          <label for="lat2">Latitude</label><input type="text" id="lat2" value="35.658584" />
+        </div>
+        <div>
+          <label for="lon2">Longitude</label><input type="text" id="lon2" value="139.745431" />
+        </div>
+      </div>
+    </article>
+    <article>
+      <button id="result">Get</button>
+    </article>
+    <article>
+      <div id="tilesarea"></div>
+    </article>
+  </main>
+
+  <script src="./js/quadkey.js"></script>
+
+</body>
+</html>
