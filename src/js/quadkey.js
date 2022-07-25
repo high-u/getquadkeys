@@ -1,7 +1,5 @@
 const quadkeytools = require('quadkeytools');
 
-/////////////////////
-
 // [緯度経度から2地点間の距離 (km) を計算する JavaScript - Qiita](https://qiita.com/kawanet/items/a2e111b17b8eb5ac859a)
 
 const getDistance = (lonLat1, lonLat2) => {
@@ -126,26 +124,17 @@ const getTiles = (quadkeyTopLeft, quadkeyBottomRight) => {
 
 };
 
-
-
 // トースト的な
 const eBody = document.getElementsByTagName("body").item(0);
 const eDiv = document.createElement("div");
 eDiv.id = "info-bar"; 
 const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-// svg.setAttribute("clip-rule", "evenodd");
-// svg.setAttribute("fill-rule", "evenodd");
-// svg.setAttribute("stroke-linejoin", "round");
-// svg.setAttribute("stroke-miterlimit", "2");
 svg.setAttribute("viewBox", "0 0 24 24");
 svg.setAttribute("width", "24");
 svg.setAttribute("height", "24");
-// svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 svg.setAttribute("fill", "#862e9c");
-// svg.style.verticalAlign = "text-bottom";
 svg.style.margin = "0 0.5rem 0 0";
 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-// path.setAttribute("fill-rule", "nonzero");
 path.setAttribute("d", "m2.095 19.886 9.248-16.5c.133-.237.384-.384.657-.384.272 0 .524.147.656.384l9.248 16.5c.064.115.096.241.096.367 0 .385-.309.749-.752.749h-18.496c-.44 0-.752-.36-.752-.749 0-.126.031-.252.095-.367zm9.907-6.881c-.414 0-.75.336-.75.75v3.5c0 .414.336.75.75.75s.75-.336.75-.75v-3.5c0-.414-.336-.75-.75-.75zm-.002-3c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z");
 svg.append(path);
 eDiv.append(svg);
@@ -158,15 +147,12 @@ eDiv.style.alignItems = "center";
 eDiv.style.justifyContent = "center";
 eDiv.style.left = "0px";
 eDiv.style.width = "100%";
-// eDiv.style.textAlign = "center";
 eDiv.style.padding = "0.5rem";
 eDiv.style.transition = "top 500ms 0ms";
 eBody.append(eDiv);
 const offsetHeight = eDiv.offsetHeight;
 console.log({offsetHeight});
 eDiv.style.top = `-${offsetHeight}px`;
-//
-
 
 const getQuadkeys = () => {
 
@@ -181,56 +167,6 @@ const getQuadkeys = () => {
   console.log(`${lat1} < ${lat2} || ${lon1} > ${lon2}`);
   if ((lat1 < lat2) || (lon1 > lon2)) {
     
-    // Toastify({
-    //   text: "対応範囲外です",
-    //   duration: 4000,
-    //   style: {
-    //     "background": "linear-gradient(45deg, #FF512F, #F09819)", // #FF512F, #F09819 | #EB3349, #F45C43 | #f09819, #edde5d
-    //     "text-align": "center",
-    //     "color": "#fff",
-    //     "width": "100%"
-    //   }
-    // }).showToast();
-
-
-    // const bd = document.getElementsByTagName("body").item(0);
-
-    // bd.replaceChildren();
-    // const newDiv = document.createElement("input");
-    // const newContent = newDiv.setAttribute("readonly", "readonly");
-    // const newContent2 = newDiv.setAttribute("value", "hoge");
-    // const dv = document.createElement("div");
-    // const dv = document.querySelector("#info");
-    // const oh = dv.offsetHeight;
-    // dv.style.backgroundColor = 'red';
-    // dv.style.width = '100px';
-    // dv.style.position = 'fixed';
-    // dv.style.top = '0px';
-    // // dv.style.animation = "10s ease-in 3s infinite normal none running aaa";
-    // dv.style.transition = "top 10s 5s";
-    
-
-    // for (const element of tiles) {
-    //   const li = document.createElement("li");
-    //   li.append(document.createTextNode(element));
-    //   ul.append(li);
-    // }
-    // const lis = tiles.map((e) => {
-    //   const li = document.createElement("li");
-    //   li.append(document.createTextNode(e))
-    //   return li;
-    // });
-    // dv.append(document.createTextNode("eee"))
-    // arrli = [];
-    // arrli[0] = document.createElement("li");
-    // arrli[0].append(document.createTextNode("0"))
-    // arrli[1] = document.createElement("li");
-    // arrli[1].append(document.createTextNode("1"))
-    // dv.replaceChildren(...lis);
-    // bd.append(dv);
-    // dv.style.bottom = `${oh}px`;
-    // dv.style.animation = "10s ease-in 3s infinite normal none running aaa";
-
     // トースト的な、の表示
     const infoBar = document.querySelector("#info-bar");
     infoBar.style.top = `0px`;
@@ -259,8 +195,6 @@ const getQuadkeys = () => {
 
   const tiles = getTiles(quadkeyTopLeft, quadkeyBottomRight);
 
-  // document.getElementById("quadkeys").innerText = JSON.stringify(tiles, null, 2);
-
   const aaa = tiles.map((e) => {
     const b = quadkeytools.bbox(e);
     return [
@@ -272,38 +206,17 @@ const getQuadkeys = () => {
     ];
   });
 
-
   const tilesarea = document.getElementById("tilesarea");
   tilesarea.replaceChildren();
-  // const newDiv = document.createElement("input");
-  // const newContent = newDiv.setAttribute("readonly", "readonly");
-  // const newContent2 = newDiv.setAttribute("value", "hoge");
   const ul = document.createElement("ul");
-  // for (const element of tiles) {
-  //   const li = document.createElement("li");
-  //   li.append(document.createTextNode(element));
-  //   ul.append(li);
-  // }
   const lis = tiles.map((e) => {
     const li = document.createElement("li");
     li.append(document.createTextNode(e))
     return li;
   });
-  // arrli = [];
-  // arrli[0] = document.createElement("li");
-  // arrli[0].append(document.createTextNode("0"))
-  // arrli[1] = document.createElement("li");
-  // arrli[1].append(document.createTextNode("1"))
   ul.replaceChildren(...lis);
   tilesarea.append(ul);
 
-  // if (markers.length === 2) {
-  //   mymap.removeLayer(markers[0]);
-  //   mymap.removeLayer(markers[1]);
-  // }
-
-
-  ///
   var myPolygons = {
     "type": "FeatureCollection",
     "features": [
@@ -315,28 +228,6 @@ const getQuadkeys = () => {
         "geometry": {
           "type": "Polygon",
           "coordinates": aaa
-          // "coordinates": [[
-          //   [
-          //       139.72412109375,
-          //       35.65729624809628
-          //   ],
-          //   [
-          //       139.72412109375,
-          //       35.67514743608467
-          //   ],
-          //   [
-          //       139.74609375,
-          //       35.67514743608467
-          //   ],
-          //   [
-          //       139.74609375,
-          //       35.65729624809628
-          //   ],
-          //   [
-          //       139.72412109375,
-          //       35.65729624809628
-          //   ]
-          // ]]
         }
       }
     ]
@@ -358,7 +249,7 @@ const getQuadkeys = () => {
       },
       style: function polystyle(feature) {
         return {
-          fillColor: '#364fc7', // #364fc7 5f3dc4
+          fillColor: '#364fc7',
           fillOpacity: 0.3,
           weight: 2,
           color: 'white',
@@ -426,65 +317,5 @@ markers[1].on('dragend', function(event) {
   document.getElementById("lat2").value = Math.floor(position.lat * 1000000) * 0.000001;
   document.getElementById("lon2").value = Math.floor(position.lng * 1000000) * 0.000001;
 });
-
-// let popupOpt = {autoClose:false,closeOnClick:false,closeButton:true,minWidth:0,};
-// var popup = L.popup(popupOpt);
-// L.marker([35.65729624809628, 139.72412109375]).addTo(mymap).on('click', function (e) {
-//   popup
-//   .setLatLng(e.latlng)
-//   .setContent("ポップアップで表示する内容")
-//   .openOn(mymap);
-// });
-
-
-  // var myPolygons = {
-  //   "type": "FeatureCollection",
-  //   "features": [
-  //     {
-  //       "type": "Feature",
-  //       "properties": {
-  //         "popupContent": "<p>丸の内ビルディングです。</p>"
-  //       },
-  //       "geometry": {
-  //         "type": "Polygon",
-  //         "coordinates": [[
-  //           [
-  //               139.72412109375,
-  //               35.65729624809628
-  //           ],
-  //           [
-  //               139.72412109375,
-  //               35.67514743608467
-  //           ],
-  //           [
-  //               139.74609375,
-  //               35.67514743608467
-  //           ],
-  //           [
-  //               139.74609375,
-  //               35.65729624809628
-  //           ],
-  //           [
-  //               139.72412109375,
-  //               35.65729624809628
-  //           ]
-  //         ]]
-  //       }
-  //     }
-  //   ]
-  // };
-  
-  // L.geoJSON(myPolygons, 
-  //   {
-  //     onEachFeature: function onEachFeature(
-  //       feature,
-  //       layer
-  //     ){
-  //       if(feature.properties && feature.properties.popupContent){
-  //         layer.bindPopup(feature.properties.popupContent);
-  //       }
-  //     }
-  //   }
-  // ).addTo(mymap);
 
 getQuadkeys();
