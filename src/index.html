@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/open-props/gradients.min.css"/>
 
 <link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:300|comfortaa:700|roboto-mono:300" rel="stylesheet" />
+<link href="https://fonts.bunny.net/css?family=saira-stencil-one:400|audiowide:400|plus-jakarta-sans:300|comfortaa:700|roboto-mono:300" rel="stylesheet" />
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
 integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
@@ -25,37 +25,58 @@ html, body {
   padding: 0;
   margin: 0;
 }
-html {
-  --text-1: var(--gray-9);
-  --text-2: var(--gray-7);
+body {
+  background-color: white;
 }
-@media (prefers-color-scheme:dark) {
-  html {
-    --text-1: var(--gray-1);
-    --text-2: var(--gray-2);
-    background-color: var(--gray-9);
-    color: var(--text-1);
-  }
+.dark body {
+  background-color: var(--gray-9);
 }
 
 header {
-  background: var(--gradient-29);
+  /* background: var(--gradient-29); */
+  /* box-shadow: var(--shadow-3); */
+  padding: var(--size-4);
+  display: grid;
+  gap: 0;
+  grid-template-columns: calc(100% - 24px) 24px;
 }
 h1 {
   margin: 0;
-  padding: var(--size-4);
-  background: rgba(0,0,0,0.6);
   font-size: var(--font-size-3);
-  font-family: 'Comfortaa', display;
+  font-family: 'Audiowide', display;
+  color: white;
+  display: inline;
+
+  background: var(--gradient-29); /* linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+#toggle-dark-and-light {
+  /* padding-right: var(--size-8); */
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+#toggle-dark-and-light.icon-dark {
+  background: center / contain no-repeat url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23bac8ff%22%3E%3Cpath%20d%3D%22M22.088%2013.126l1.912-1.126-1.912-1.126c-1.021-.602-1.372-1.91-.788-2.942l1.093-1.932-2.22-.02c-1.185-.01-2.143-.968-2.153-2.153l-.02-2.219-1.932%201.093c-1.031.583-2.34.233-2.941-.788l-1.127-1.913-1.127%201.913c-.602%201.021-1.91%201.372-2.941.788l-1.932-1.093-.02%202.219c-.01%201.185-.968%202.143-2.153%202.153l-2.22.02%201.093%201.932c.584%201.032.233%202.34-.788%202.942l-1.912%201.126%201.912%201.126c1.021.602%201.372%201.91.788%202.942l-1.093%201.932%202.22.02c1.185.01%202.143.968%202.153%202.153l.02%202.219%201.932-1.093c1.031-.583%202.34-.233%202.941.788l1.127%201.913%201.127-1.913c.602-1.021%201.91-1.372%202.941-.788l1.932%201.093.02-2.219c.011-1.185.969-2.143%202.153-2.153l2.22-.02-1.093-1.932c-.584-1.031-.234-2.34.788-2.942zm-10.117%206.874c-4.411%200-8-3.589-8-8s3.588-8%208-8%208%203.589%208%208-3.589%208-8%208zm6.029-8c0%203.313-2.687%206-6%206s-6-2.687-6-6%202.687-6%206-6%206%202.687%206%206z%22%2F%3E%3C%2Fsvg%3E');
+}
+#toggle-dark-and-light.icon-light {
+  background: center / contain no-repeat url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23bac8ff%22%3E%3Cpath%20d%3D%22M12%2010.999c1.437.438%202.562%201.564%202.999%203.001.44-1.437%201.565-2.562%203.001-3-1.436-.439-2.561-1.563-3.001-3-.437%201.436-1.562%202.561-2.999%202.999zm8.001.001c.958.293%201.707%201.042%202%202.001.291-.959%201.042-1.709%201.999-2.001-.957-.292-1.707-1.042-2-2-.293.958-1.042%201.708-1.999%202zm-1-9c-.437%201.437-1.563%202.562-2.998%203.001%201.438.44%202.561%201.564%203.001%203.002.437-1.438%201.563-2.563%202.996-3.002-1.433-.437-2.559-1.564-2.999-3.001zm-7.001%2022c-6.617%200-12-5.383-12-12s5.383-12%2012-12c1.894%200%203.63.497%205.37%201.179-2.948.504-9.37%203.266-9.37%2010.821%200%207.454%205.917%2010.208%209.37%2010.821-1.5.846-3.476%201.179-5.37%201.179z%22%2F%3E%3C%2Fsvg%3E');
+}
+.dark h1 {
+  /* background-color: rgba(0,0,0,0.6); */
+}
+.dark #toggle-dark-and-light {
+  /* background-color: rgba(0,0,0,0.6); */
 }
 main {
-  padding: var(--size-4);
+  padding: 0 var(--size-4) var(--size-4) var(--size-4);
 }
 article {
   padding: 0 0 var(--size-6) 0;
 }
 button {
-  color: var(--text-1);
   background: var(--gradient-29);
   border: none;
   cursor: pointer;
@@ -64,7 +85,10 @@ button {
   margin: 0;
   font-size: var(--font-size-2);
   border-radius: var(--radius-2);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  /* font-family: 'Roboto Mono', sans-serif; */
+  font-family: 'Audiowide', display;
+  color: white;
+  /* box-shadow: var(--shadow-2); */
 }
 button:hover {
   filter: brightness(110%);
@@ -74,25 +98,35 @@ label {
   display: block;
   color: var(--gray-5);
   padding: 0 0 var(--size-1) 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Roboto Mono', sans-serif;
   font-size: var(--font-size-1);
 }
+
 input[type="text"] {
   display: block;
   width: 100%;
   padding: var(--size-2);
   font-size: var(--font-size-2);
   border-width: var(--border-size-2);
-  border-color: var(--gray-7);
+  border-color: var(--gray-3);
+  background-color: var(--gray-1);
+  color: var(--gray-8);
   border-radius: var(--radius-2);
   border-style: solid;
-  background-color: var(--gray-8);
-  color: var(--gray-1);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Roboto Mono', sans-serif;
   letter-spacing: 1px;
 }
-input[type="text"]:focus {
+.dark input[type="text"] {
+  border-color: var(--gray-7);
+  background-color: var(--gray-8);
+  color: var(--gray-1);
+}
+.dark input[type="text"]:focus {
   outline: var(--indigo-3) solid var(--border-size-2);
+}
+
+svg.pin {
+  filter: drop-shadow(0 0 0.3rem rgba(0,0,0,0.1));
 }
 
 ul {
@@ -102,8 +136,11 @@ ul {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  background-color: var(--gray-8);
+  background-color: var(--gray-1);
   border-radius: var(--radius-2);
+}
+.dark ul {
+  background-color: var(--gray-8);
 }
 ul li {
   flex: 1;
@@ -116,12 +153,15 @@ ul li {
   color: var(--gray-6);
   text-align: center;
   margin: 0 var(--size-2) var(--size-2) var(--size-2);
+  background-color: white;
+}
+.dark ul li {
   background-color: var(--gray-9);
 }
 
 #map {
   border-radius: var(--radius-2);
-  height: var(--size-14);
+  height: 50vh;
 }
 
 .grid {
@@ -133,11 +173,11 @@ ul li {
   grid-template-columns: var(--icon-width) calc(50% - var(--icon-width-half) - var(--cell-gap)) calc(50% - var(--icon-width-half) - var(--cell-gap));
 }
 @media screen and (min-width: 800px) {
-  h1 {
+  header {
     padding: var(--size-4) var(--size-8);
   }
   main {
-    padding: var(--size-8) var(--size-8) var(--size-8) var(--size-8);
+    padding: 0 var(--size-8) var(--size-8) var(--size-8);
   }
   .grid {
     display: grid;
@@ -154,10 +194,12 @@ ul li {
   align-items: flex-end;
 }
 </style>
+
 </head>
 <body>
   <header>
-    <h1>Get quadkey containing a range of squares</h1>
+    <div><h1>GET QUADKEY CONTAINING A RANGE OF SQUARES<!-- Get quadkey containing a range of squares --></h1></div>
+    <div id="toggle-dark-and-light" class=""></div>
   </header>
   <main>
     <article>
@@ -166,10 +208,12 @@ ul li {
     <article>
       <div class="grid">
         <div class="cell-pin">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" viewBox="12 2 40 60" aria-labelledby="title" aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path data-name="layer1" d="M32 2a20 20 0 0 0-20 20c0 18 20 40 20 40s20-22 20-40A20 20 0 0 0 32 2zm7.4 32.1L32 28.7l-7.4 5.4 2.9-8.7L20 20h9.2l2.8-8.7 2.8 8.7H44l-7.4 5.4z" fill="#0284c7"></path>
-          </svg> -->
-          <img src="../images/pin.svg" width="48" height="48" />
+          <svg class="pin" width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path style="stroke:none;stroke-opacity:1;fill:#339af0;fill-opacity:1"
+              d="M 12,0 C 7.802004,0 4,3.4025667 4,7.601562 4,13.844556 10.377002,14.505009 12,24 13.622998,14.505009 20,13.844556 20,7.601562 20,3.4025667 16.198996,0 12,0 Z" />
+            <path style="color:#000000;fill:#ffffff;fill-opacity:1"
+              d="M 12 0 C 7.8020082 0 4 3.4025709 4 7.6015625 C 4 13.84455 10.377004 14.505018 12 24 C 13.622996 14.505018 20 13.84455 20 7.6015625 C 20 3.4025709 16.198992 0 12 0 z M 12 1 C 15.658769 1 19 4.0060522 19 7.6015625 C 19 10.382565 17.657331 11.785613 15.84375 13.9375 C 14.532432 15.49343 13.048922 17.409016 12 20.208984 C 10.951078 17.409016 9.4675673 15.49343 8.15625 13.9375 C 6.342669 11.785613 5 10.382565 5 7.6015625 C 5 4.006211 8.3423594 1 12 1 z " />
+          </svg>
         </div>
         <div>
           <label for="lat1">Latitude</label><input type="text" id="lat1" value="35.690921" />
@@ -178,10 +222,12 @@ ul li {
           <label for="lon1">Longitude</label><input type="text" id="lon1" value="139.700257" />
         </div>
         <div class="cell-pin">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" viewBox="12 2 40 60" aria-labelledby="title" aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path data-name="layer1" d="M32 2a20 20 0 0 0-20 20c0 18 20 40 20 40s20-22 20-40A20 20 0 0 0 32 2zm7.4 32.1L32 28.7l-7.4 5.4 2.9-8.7L20 20h9.2l2.8-8.7 2.8 8.7H44l-7.4 5.4z" fill="#0d9488"></path>
-          </svg> -->
-          <img src="../images/pin2.svg" width="48" height="48" />
+          <svg class="pin" width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path style="stroke:none;stroke-opacity:1;fill:#22b8cf;fill-opacity:1"
+              d="M 12,0 C 7.802004,0 4,3.4025667 4,7.601562 4,13.844556 10.377002,14.505009 12,24 13.622998,14.505009 20,13.844556 20,7.601562 20,3.4025667 16.198996,0 12,0 Z" />
+            <path style="color:#000000;fill:#ffffff;fill-opacity:1"
+              d="M 12 0 C 7.8020082 0 4 3.4025709 4 7.6015625 C 4 13.84455 10.377004 14.505018 12 24 C 13.622996 14.505018 20 13.84455 20 7.6015625 C 20 3.4025709 16.198992 0 12 0 z M 12 1 C 15.658769 1 19 4.0060522 19 7.6015625 C 19 10.382565 17.657331 11.785613 15.84375 13.9375 C 14.532432 15.49343 13.048922 17.409016 12 20.208984 C 10.951078 17.409016 9.4675673 15.49343 8.15625 13.9375 C 6.342669 11.785613 5 10.382565 5 7.6015625 C 5 4.006211 8.3423594 1 12 1 z " />
+          </svg>
         </div>
         <div>
           <label for="lat2">Latitude</label><input type="text" id="lat2" value="35.658584" />
@@ -192,7 +238,7 @@ ul li {
       </div>
     </article>
     <article>
-      <button id="result">Get</button>
+      <button id="result">GET<!-- Get --></button>
     </article>
     <article>
       <div id="tilesarea"></div>
@@ -200,6 +246,46 @@ ul li {
   </main>
 
   <script src="./js/quadkey.js"></script>
+  <script>
 
+    const toggleMode = (isDark = false) => {
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+        console.log("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        console.log("light");
+        
+      }
+    }
+    
+    window.matchMedia("(prefers-color-scheme: dark)").addListener(e => {
+      toggleMode(e.matches)
+    });
+    
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      toggleMode(true);
+      document.getElementById("toggle-dark-and-light").classList.remove("icon-light");
+      document.getElementById("toggle-dark-and-light").classList.add("icon-dark");
+    } else {
+      toggleMode(false);
+      document.getElementById("toggle-dark-and-light").classList.add("icon-light");
+      document.getElementById("toggle-dark-and-light").classList.remove("icon-dark");
+    }
+    
+
+    const tdal = document.getElementById("toggle-dark-and-light");
+    tdal.onclick = () => {
+      if (document.getElementById("toggle-dark-and-light").classList.contains("icon-dark")) {
+        document.getElementById("toggle-dark-and-light").classList.add("icon-light");
+        document.getElementById("toggle-dark-and-light").classList.remove("icon-dark");
+        toggleMode(false);
+      } else {
+        document.getElementById("toggle-dark-and-light").classList.remove("icon-light");
+        document.getElementById("toggle-dark-and-light").classList.add("icon-dark");
+        toggleMode(true);
+      }
+    }
+  </script>
 </body>
 </html>
