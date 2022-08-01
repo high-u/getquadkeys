@@ -16,7 +16,8 @@ const getDistance = (lonLat1, lonLat2) => {
 const getZoomLevel = (lonLat1, lonLat2) => {
 
   // Level 決定用の配列作成
-  const aaa = [...Array(27)].map((e, i, a) => 2 ** (a.length - 1 - i));
+  const coefficient = 1; // 0 to 2
+  const aaa = [...Array(27)].map((e, i, a) => 2 ** (a.length - coefficient - i));
   const dis = getDistance(lonLat1, lonLat2);
   const level = aaa.filter(e => e > dis).length;
   return level;
@@ -147,12 +148,14 @@ eDiv.style.alignItems = "center";
 eDiv.style.justifyContent = "center";
 eDiv.style.left = "0px";
 eDiv.style.width = "100%";
-eDiv.style.padding = "0.5rem";
-eDiv.style.transition = "top 500ms 0ms";
+eDiv.style.padding = "1rem";
+// eDiv.style.transition = "top 500ms 0ms";
+eDiv.style.transition = "bottom 500ms 0ms";
 eBody.append(eDiv);
 const offsetHeight = eDiv.offsetHeight;
 console.log({offsetHeight});
-eDiv.style.top = `-${offsetHeight}px`;
+// eDiv.style.top = `-${offsetHeight}px`;
+eDiv.style.bottom = "100vh";
 
 const getQuadkeys = () => {
 
@@ -169,13 +172,15 @@ const getQuadkeys = () => {
     
     // トースト的な、の表示
     const infoBar = document.querySelector("#info-bar");
-    infoBar.style.top = `0px`;
+    // infoBar.style.top = `0px`;
+    infoBar.style.bottom = `calc(100vh - ${infoBar.offsetHeight}px)`;
     infoBar.style.filter = "drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5))";
     infoBar.style.zIndex = "9999";
     setTimeout(() => {
       // トースト的な、を閉じる
       const infoBarHeight = infoBar.offsetHeight;
-      infoBar.style.top = `-${infoBarHeight}px`;
+      // infoBar.style.top = `-${infoBarHeight}px`;
+      infoBar.style.bottom = "100vh";
     }, 10000);
     setTimeout(() => {
       // トースト的な、が閉じたらシャドーを消す
