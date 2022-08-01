@@ -16,7 +16,8 @@ const getDistance = (lonLat1, lonLat2) => {
 const getZoomLevel = (lonLat1, lonLat2) => {
 
   // Level 決定用の配列作成
-  const aaa = [...Array(27)].map((e, i, a) => 2 ** (a.length - 1 - i));
+  const coefficient = 1; // 0 to 2
+  const aaa = [...Array(27)].map((e, i, a) => 2 ** (a.length - coefficient - i));
   const dis = getDistance(lonLat1, lonLat2);
   const level = aaa.filter(e => e > dis).length;
   return level;
@@ -147,7 +148,7 @@ eDiv.style.alignItems = "center";
 eDiv.style.justifyContent = "center";
 eDiv.style.left = "0px";
 eDiv.style.width = "100%";
-eDiv.style.padding = "0.5rem";
+eDiv.style.padding = "1rem";
 // eDiv.style.transition = "top 500ms 0ms";
 eDiv.style.transition = "bottom 500ms 0ms";
 eBody.append(eDiv);
