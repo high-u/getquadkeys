@@ -175,7 +175,7 @@ const getQuadkeys = () => {
     // infoBar.style.top = `0px`;
     infoBar.style.bottom = `calc(100vh - ${infoBar.offsetHeight}px)`;
     infoBar.style.filter = "drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5))";
-    infoBar.style.zIndex = "9999";
+    infoBar.style.zIndex = "99999";
     setTimeout(() => {
       // トースト的な、を閉じる
       const infoBarHeight = infoBar.offsetHeight;
@@ -278,6 +278,7 @@ L.tileLayer(
   {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 18,
+    minZoom: 1
   }
 ).addTo(mymap);
 

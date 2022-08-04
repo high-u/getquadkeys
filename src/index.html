@@ -127,14 +127,14 @@ input[type="text"] {
   outline: var(--indigo-3) solid var(--border-size-2);
 }
 input[type="text"].latitude {
-  background-image: url("./images/latitude2.svg");
+  background-image: url("./images/lat.svg");
   background-position: 0.5rem center;
   background-repeat: no-repeat;
   background-size: 1.2rem 1.2rem;
   padding-left: 2.4rem;
 }
 input[type="text"].longitude {
-  background-image: url("./images/longitude2.svg");
+  background-image: url("./images/lon.svg");
   background-position: 0.5rem center;
   background-repeat: no-repeat;
   background-size: 1.2rem 1.2rem;
@@ -182,31 +182,44 @@ ul li {
 
 .grid {
   display: grid;
-  --cell-gap: var(--size-4);
-  gap: var(--cell-gap);
+  /* --cell-gap: var(--size-4); */
+  row-gap: var(--size-2);
+  column-gap: var(--size-4);
   --icon-width: 48px;
   --icon-width-half: calc(var(--icon-width) / 2);
   /* grid-template-columns: var(--icon-width) calc(50% - var(--icon-width-half) - var(--cell-gap)) calc(50% - var(--icon-width-half) - var(--cell-gap)); */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
+.grid .wrapper-label {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
 .grid2 {
   display: grid;
-  --cell-gap: var(--size-4);
-  gap: var(--cell-gap);
+  /* --cell-gap: var(--size-4); */
+  row-gap: var(--size-2);
+  column-gap: var(--size-4);
   --icon-width: 48px;
   --icon-width-half: calc(var(--icon-width) / 2);
   /* grid-template-columns: var(--icon-width) calc(50% - var(--icon-width-half) - var(--cell-gap)) calc(50% - var(--icon-width-half) - var(--cell-gap)); */
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: var(--cell-gap);
+  grid-template-columns: 10rem auto;
+  margin-top: var(--size-2);
 }
+.grid2 .wrapper-label {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
 .grid-buttons {
   display: grid;
   --cell-gap: var(--size-4);
-  gap: var(--cell-gap);
+  row-gap: var(--cell-gap);
+  column-gap: var(--cell-gap);
   --icon-width: 48px;
   --icon-width-half: calc(var(--icon-width) / 2);
   /* grid-template-columns: var(--icon-width) calc(50% - var(--icon-width-half) - var(--cell-gap)) calc(50% - var(--icon-width-half) - var(--cell-gap)); */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   margin-top: var(--cell-gap);
 }
 
@@ -220,7 +233,8 @@ ul li {
   .grid {
     display: grid;
     --cell-gap: var(--size-4);
-    gap: var(--cell-gap);
+    row-gap: var(--cell-gap);
+    column-gap: var(--cell-gap); 
     --gap-1-4: calc(var(--cell-gap) / 4);
     --icon-width: 48px;
     --icon-width-half: calc(var(--icon-width) / 2);
@@ -228,27 +242,38 @@ ul li {
     /* grid-template-columns: repeat(3, 1fr); */
     grid-template-columns: 12rem auto auto;
   }
+  .grid .wrapper-label {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
   .grid2 {
     display: grid;
     --cell-gap: var(--size-4);
-    gap: var(--cell-gap);
+    row-gap: var(--cell-gap);
+    column-gap: var(--cell-gap);
     --gap-1-4: calc(var(--cell-gap) / 4);
     --icon-width: 48px;
     --icon-width-half: calc(var(--icon-width) / 2);
     /* grid-template-columns: var(--icon-width) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) var(--icon-width) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)); */
     /* grid-template-columns: repeat(3, 1fr); */
     grid-template-columns: 12rem 10rem auto;
+    margin-top: var(--size-4);
+  }
+  .grid2 .wrapper-label {
+    grid-column-start: 1;
+    grid-column-end: 2;
   }
   .grid-buttons {
     display: grid;
     --cell-gap: var(--size-4);
-    gap: var(--cell-gap);
+    row-gap: var(--cell-gap);
+    column-gap: var(--cell-gap);
     --gap-1-4: calc(var(--cell-gap) / 4);
     --icon-width: 48px;
     --icon-width-half: calc(var(--icon-width) / 2);
     /* grid-template-columns: var(--icon-width) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) var(--icon-width) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)) calc(25% - var(--icon-width-half) - var(--cell-gap) - var(--gap-1-4)); */
     /* grid-template-columns: repeat(3, 1fr); */
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
   }
 }
 .cell-pin {
@@ -276,6 +301,23 @@ ul li {
   /* border-radius: var(--radius-2); */
   /* border: solid var(--gray-8) 2px; */
   padding: 0.3rem 0 0 0;
+}
+
+.wrapper-label {
+  /* display: grid; */
+  /* justify-items: center; */
+  /* align-items: center; */
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  
+}
+.wrapper-label span {
+  display: inline-block;
+  margin-left: var(--size-2);
+  color: var(--gray-5);
+  font-family: 'Roboto Mono', sans-serif;
+  letter-spacing: 1px;
 }
 
 </style>
@@ -340,8 +382,9 @@ input[type="range"]:focus::-webkit-slider-thumb {
   position: absolute;
   left: 4rem;
   top: 0.1rem;
-  content: "Manually";
+  content: "MANUALLY";
   cursor: pointer;
+  letter-spacing: 1px;
 }
 /* Hide default HTML checkbox */
 .switch input {
@@ -406,7 +449,10 @@ input:checked + .slider:before {
 
 </head>
 <body>
-  <div id="map"></div>
+  
+  <div id="map">
+    <div style="position: absolute; height: 50vh; background-color: transparent;z-index: 9999; top: 0; left: 0; width: 100%; pointer-events: none; box-shadow: inset 0 0 2rem rgba(0,0,0,1);"></div>
+  </div>
   <header>
     <div><h1>GET QUADKEY CONTAINING A RANGE OF SQUARES<!-- Get quadkey containing a range of squares --></h1></div>
     <div id="toggle-dark-and-light" class=""></div>
@@ -415,15 +461,14 @@ input:checked + .slider:before {
     <article>
       <div>
         <div class="grid">
-          <div>
-            <label>
-              <svg class="pin" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path style="stroke:none;stroke-opacity:1;fill:#339af0;fill-opacity:1"
-                  d="M 12,0 C 7.802004,0 4,3.4025667 4,7.601562 4,13.844556 10.377002,14.505009 12,24 13.622998,14.505009 20,13.844556 20,7.601562 20,3.4025667 16.198996,0 12,0 Z" />
-                <path style="color:#000000;fill:#ffffff;fill-opacity:1"
-                  d="M 12 0 C 7.8020082 0 4 3.4025709 4 7.6015625 C 4 13.84455 10.377004 14.505018 12 24 C 13.622996 14.505018 20 13.84455 20 7.6015625 C 20 3.4025709 16.198992 0 12 0 z M 12 1 C 15.658769 1 19 4.0060522 19 7.6015625 C 19 10.382565 17.657331 11.785613 15.84375 13.9375 C 14.532432 15.49343 13.048922 17.409016 12 20.208984 C 10.951078 17.409016 9.4675673 15.49343 8.15625 13.9375 C 6.342669 11.785613 5 10.382565 5 7.6015625 C 5 4.006211 8.3423594 1 12 1 z " />
-              </svg>UPPER LEFT
-            </label>
+          <div class="wrapper-label">
+            <svg class="pin" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path style="stroke:none;stroke-opacity:1;fill:#339af0;fill-opacity:1"
+                d="M 12,0 C 7.802004,0 4,3.4025667 4,7.601562 4,13.844556 10.377002,14.505009 12,24 13.622998,14.505009 20,13.844556 20,7.601562 20,3.4025667 16.198996,0 12,0 Z" />
+              <path style="color:#000000;fill:#ffffff;fill-opacity:1"
+                d="M 12 0 C 7.8020082 0 4 3.4025709 4 7.6015625 C 4 13.84455 10.377004 14.505018 12 24 C 13.622996 14.505018 20 13.84455 20 7.6015625 C 20 3.4025709 16.198992 0 12 0 z M 12 1 C 15.658769 1 19 4.0060522 19 7.6015625 C 19 10.382565 17.657331 11.785613 15.84375 13.9375 C 14.532432 15.49343 13.048922 17.409016 12 20.208984 C 10.951078 17.409016 9.4675673 15.49343 8.15625 13.9375 C 6.342669 11.785613 5 10.382565 5 7.6015625 C 5 4.006211 8.3423594 1 12 1 z " />
+            </svg>
+            <span>UPPER LEFT</span>
           </div>
           <div>
             <input type="text" id="lat1" class="latitude" value="35.6778941" />
@@ -431,15 +476,13 @@ input:checked + .slider:before {
           <div>
             <input type="text" id="lon1" class="longitude" value="139.714547" />
           </div>
-          <div>
-            <label>
-              <svg class="pin" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path style="stroke:none;stroke-opacity:1;fill:#22b8cf;fill-opacity:1"
-                  d="M 12,0 C 7.802004,0 4,3.4025667 4,7.601562 4,13.844556 10.377002,14.505009 12,24 13.622998,14.505009 20,13.844556 20,7.601562 20,3.4025667 16.198996,0 12,0 Z" />
-                <path style="color:#000000;fill:#ffffff;fill-opacity:1"
-                  d="M 12 0 C 7.8020082 0 4 3.4025709 4 7.6015625 C 4 13.84455 10.377004 14.505018 12 24 C 13.622996 14.505018 20 13.84455 20 7.6015625 C 20 3.4025709 16.198992 0 12 0 z M 12 1 C 15.658769 1 19 4.0060522 19 7.6015625 C 19 10.382565 17.657331 11.785613 15.84375 13.9375 C 14.532432 15.49343 13.048922 17.409016 12 20.208984 C 10.951078 17.409016 9.4675673 15.49343 8.15625 13.9375 C 6.342669 11.785613 5 10.382565 5 7.6015625 C 5 4.006211 8.3423594 1 12 1 z " />
-              </svg>LOWER RIGHT
-            </label>
+          <div class="wrapper-label">
+            <svg class="pin" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path style="stroke:none;stroke-opacity:1;fill:#22b8cf;fill-opacity:1"
+                d="M 12,0 C 7.802004,0 4,3.4025667 4,7.601562 4,13.844556 10.377002,14.505009 12,24 13.622998,14.505009 20,13.844556 20,7.601562 20,3.4025667 16.198996,0 12,0 Z" />
+              <path style="color:#000000;fill:#ffffff;fill-opacity:1"
+                d="M 12 0 C 7.8020082 0 4 3.4025709 4 7.6015625 C 4 13.84455 10.377004 14.505018 12 24 C 13.622996 14.505018 20 13.84455 20 7.6015625 C 20 3.4025709 16.198992 0 12 0 z M 12 1 C 15.658769 1 19 4.0060522 19 7.6015625 C 19 10.382565 17.657331 11.785613 15.84375 13.9375 C 14.532432 15.49343 13.048922 17.409016 12 20.208984 C 10.951078 17.409016 9.4675673 15.49343 8.15625 13.9375 C 6.342669 11.785613 5 10.382565 5 7.6015625 C 5 4.006211 8.3423594 1 12 1 z " />
+            </svg><span>LOWER RIGHT</span>
           </div>
           <div>
             <input type="text" id="lat2" class="latitude" value="35.676731" />
@@ -449,20 +492,18 @@ input:checked + .slider:before {
           </div>
         </div>
         <div class="grid2">
-          <div>
-            <label>
-              <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <g
-                  id="layer1">
-                  <rect
-                    style="fill:#b197fc;fill-opacity:0.4;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-                    width="30" height="30" x="1" y="1" />
-                  <rect
-                    style="fill:#b197fc;fill-opacity:0.4;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-                    width="16" height="16" x="31" y="31" />
-                </g>
-              </svg>QUADKEY LEVEL
-            </label>
+          <div class="wrapper-label">
+            <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <g
+                id="layer1">
+                <rect
+                  style="fill:#b197fc;fill-opacity:0.4;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+                  width="30" height="30" x="1" y="1" />
+                <rect
+                  style="fill:#b197fc;fill-opacity:0.4;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+                  width="16" height="16" x="31" y="31" />
+              </g>
+            </svg><span>QUADKEY LEVEL</span>
           </div>
           <div class="wrapper-toggle-switch">
             <label class="switch">
