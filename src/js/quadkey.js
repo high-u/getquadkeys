@@ -268,9 +268,13 @@ const getQuadkeys = () => {
 }
 document.getElementById("result").onclick = getQuadkeys;
 
-var mymap = L.map('map').setView([35.677, 139.720], 12);
+var mymap = L.map('map').setView([35.6775, 139.716500], 16);
 L.tileLayer(
-  'https://{s}.tile.osm.org/{z}/{x}/{y}.png', // http だと、 chrome で 403 エラーが出る。safari だと地図が表示される。
+  // 'https://{s}.tile.osm.org/{z}/{x}/{y}.png', // http だと、 chrome で 403 エラーが出る。safari だと地図が表示される。
+  // ここから拝借 https://github.com/gsi-cyberjapan/gsimaps/blob/gh-pages/layers_txt/layers0.txt
+  // 'https://maps.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png?_=20210915a',
+  'https://maps.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',
+  // 'https://maps.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png?_=20210915a',
   {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 18,
