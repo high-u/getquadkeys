@@ -193,7 +193,19 @@ const getQuadkeys = () => {
   const pointTopLeft = [parseFloat(lon1) , parseFloat(lat1)];
   const pointBottomRight = [parseFloat(lon2), parseFloat(lat2)];
 
-  const zl = getZoomLevel(pointTopLeft, pointBottomRight);
+  
+  const quadkeyLevel = document.getElementById("level").value;
+  const levelManually = document.getElementById("level-manually").checked;
+  
+  const zl = ((level, manually) => {
+    if (manually) {
+      return level;
+    } else {
+      return getZoomLevel(pointTopLeft, pointBottomRight); 
+    }
+  })(quadkeyLevel, levelManually);
+
+  console.log({zl}, {quadkeyLevel}, {levelManually});
 
   const quadkeyTopLeft = toQuadkey(pointTopLeft[1], pointTopLeft[0], zl);
   const quadkeyBottomRight = toQuadkey(pointBottomRight[1], pointBottomRight[0], zl);
@@ -278,7 +290,7 @@ L.tileLayer(
   {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 18,
-    minZoom: 1
+    minZoom: 2
   }
 ).addTo(mymap);
 
@@ -328,4 +340,17 @@ markers[1].on('dragend', function(event) {
   document.getElementById("lon2").value = Math.floor(position.lng * 1000000) * 0.000001;
 });
 
+document.getElementById("level").disabled = true;
+document.getElementById("level-manually").onchange = (e) => {
+  console.log(JSON.stringify(e));
+  console.log("checked", document.getElementById("level-manually").checked);
+  if (document.getElementById("level-manually").checked) {
+    document.getElementById("level").disabled = false;
+  } else {
+    document.getElementById("level").disabled = true;
+  }
+}
+
+
 getQuadkeys();
+
