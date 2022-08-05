@@ -175,7 +175,7 @@ const getQuadkeys = () => {
     // infoBar.style.top = `0px`;
     infoBar.style.bottom = `calc(100vh - ${infoBar.offsetHeight}px)`;
     infoBar.style.filter = "drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5))";
-    infoBar.style.zIndex = "9999";
+    infoBar.style.zIndex = "99999";
     setTimeout(() => {
       // トースト的な、を閉じる
       const infoBarHeight = infoBar.offsetHeight;
@@ -193,7 +193,19 @@ const getQuadkeys = () => {
   const pointTopLeft = [parseFloat(lon1) , parseFloat(lat1)];
   const pointBottomRight = [parseFloat(lon2), parseFloat(lat2)];
 
-  const zl = getZoomLevel(pointTopLeft, pointBottomRight);
+  
+  const quadkeyLevel = document.getElementById("level").value;
+  const levelManually = document.getElementById("level-manually").checked;
+  
+  const zl = ((level, manually) => {
+    if (manually) {
+      return level;
+    } else {
+      return getZoomLevel(pointTopLeft, pointBottomRight); 
+    }
+  })(quadkeyLevel, levelManually);
+
+  console.log({zl}, {quadkeyLevel}, {levelManually});
 
   const quadkeyTopLeft = toQuadkey(pointTopLeft[1], pointTopLeft[0], zl);
   const quadkeyBottomRight = toQuadkey(pointBottomRight[1], pointBottomRight[0], zl);
@@ -268,12 +280,17 @@ const getQuadkeys = () => {
 }
 document.getElementById("result").onclick = getQuadkeys;
 
-var mymap = L.map('map').setView([35.677, 139.720], 12);
+var mymap = L.map('map').setView([35.6775, 139.716500], 16);
 L.tileLayer(
-  'https://{s}.tile.osm.org/{z}/{x}/{y}.png', // http だと、 chrome で 403 エラーが出る。safari だと地図が表示される。
+  // 'https://{s}.tile.osm.org/{z}/{x}/{y}.png', // http だと、 chrome で 403 エラーが出る。safari だと地図が表示される。
+  // ここから拝借 https://github.com/gsi-cyberjapan/gsimaps/blob/gh-pages/layers_txt/layers0.txt
+  // 'https://maps.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png?_=20210915a',
+  'https://maps.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',
+  // 'https://maps.gsi.go.jp/xyz/blank/{z}/{x}/{y}.png?_=20210915a',
   {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 18,
+    minZoom: 2
   }
 ).addTo(mymap);
 
@@ -323,4 +340,17 @@ markers[1].on('dragend', function(event) {
   document.getElementById("lon2").value = Math.floor(position.lng * 1000000) * 0.000001;
 });
 
+document.getElementById("level").disabled = true;
+document.getElementById("level-manually").onchange = (e) => {
+  console.log(JSON.stringify(e));
+  console.log("checked", document.getElementById("level-manually").checked);
+  if (document.getElementById("level-manually").checked) {
+    document.getElementById("level").disabled = false;
+  } else {
+    document.getElementById("level").disabled = true;
+  }
+}
+
+
 getQuadkeys();
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   fill="#ffffff"
+   width="48"
+   height="48"
+   viewBox="0 0 48 48"
+   version="1.1"
+   id="svg1056"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   sodipodi:docname="latitude.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1058"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="11.956048"
+     inkscape:cx="14.678764"
+     inkscape:cy="25.510103"
+     inkscape:window-width="1512"
+     inkscape:window-height="916"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1177" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1053" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path1179"
+       style="color:#000000;-inkscape-stroke:none"
+       d="M 24 0 C 10.76888 0 0 10.768881 0 24 C 0 37.231119 10.76888 48 24 48 C 37.23112 48 48 37.231119 48 24 C 48 10.768881 37.23112 0 24 0 z M 24 4 C 29.609963 4 34.66773 6.2965249 38.294922 10 L 9.7050781 10 C 13.33227 6.2965249 18.390037 4 24 4 z M 6.671875 14 L 41.328125 14 C 42.710799 16.396055 43.614579 19.10413 43.900391 22 L 4.0996094 22 C 4.3854205 19.10413 5.2892008 16.396055 6.671875 14 z M 4.0996094 26 L 43.900391 26 C 43.614579 28.89587 42.710799 31.603945 41.328125 34 L 6.671875 34 C 5.2892008 31.603945 4.3854205 28.89587 4.0996094 26 z M 9.7050781 38 L 38.294922 38 C 34.66773 41.703475 29.609963 44 24 44 C 18.390037 44 13.33227 41.703475 9.7050781 38 z " />
+  </g>
+</svg>
